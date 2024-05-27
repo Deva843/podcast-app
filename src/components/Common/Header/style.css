@@ -1,0 +1,51 @@
+.navBar{
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 1.5rem;
+}
+
+/* links */
+
+.links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.links a {
+    color: var(--grey) !important;
+    text-decoration: none;
+    font-weight: 600;
+    
+}
+
+
+.links a:hover{
+color: var(--purple-grey) !important;
+transition: all 0.2s;
+}
+
+/* gradient effect */
+.gradient {
+    position: absolute;
+    width: 800px;
+    height: 140px;
+    margin: auto;
+    background: var(--blue);
+    filter:blur(90px);
+    z-index: -1;
+    top: -150px;
+  }
+
+  /* //while active links */
+ .links .active{
+    color: rgb(250, 206, 11) !important;
+    /* background-color: goldenrod; */
+    padding: .5rem;
+  }
+  .links .active:hover{
+    color: rgb(250, 206, 11) !important;
+  }
+
+ 
