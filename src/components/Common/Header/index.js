@@ -11,7 +11,7 @@ function Header() {
         <div className='links'>
             <NavLink to = "/">SignUp</NavLink>
             <NavLink to = "/podcast">podcast</NavLink>
-            <NavLink to = "/create-a-podcast">Start A Podcast</NavLink>
+            <NavLink to = "/create-a-podcast">Start a Podcast</NavLink>
             <NavLink to = "/profile">profile</NavLink>
 
         </div>

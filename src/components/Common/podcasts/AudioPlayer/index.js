@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import {FaPlay,FaPause,FaVolumeUp,FaVolumeMute} from "react-icons/fa";
 import "./style.css";
 
-function AudioPlayer({audioSrc,image}) {
+function AudioPlayer({audioSrc,image,playingFile}) {
     const [duration,setDuration] = useState(0);
     const [currentTime,setCurrentTime] = useState(0);
-    const [isplaying,setIsPlaying] = useState(true);
+    const [isplaying,setIsPlaying] = useState(false);
     const [isMute,setIsMute] = useState(false);
     const [volume,setVolume] = useState("");
     const audioRef = useRef();
@@ -19,6 +19,16 @@ function AudioPlayer({audioSrc,image}) {
       }
     
     },[isplaying]);
+    useEffect(()=>{
+      if(isplaying){
+        audioRef.current.pause();
+        
+      }else{
+        audioRef.current.play();
+        // audioRef.current.volume= 1;
+      }
+    
+    },[playingFile]);
     useEffect(()=>{
       const audio = audioRef.current;
       audio.addEventListener("timeupdate",handleTimeUpdate);
@@ -42,7 +52,7 @@ function AudioPlayer({audioSrc,image}) {
 
     useEffect(()=>{
       if(!isMute){
-        audioRef.current.volume = volume;
+        audioRef.current.volume = 1;
         // setVolume(1);
       }
       else{

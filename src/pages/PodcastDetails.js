@@ -96,7 +96,7 @@ function PodcastDetailsPage() {
             </div>
             <p className="podcast-desc">{podcast.description}</p>
 
-            {/* all episodes here */}
+            {/* all episodes here  with audio files */}
             <h1 className="podcast-tittle-heading">Episodes</h1>
             {
               episodes.length ?
@@ -117,7 +117,7 @@ function PodcastDetailsPage() {
             }
         </>}
       </div>
-      {playingFile && <AudioPlayer audioSrc={playingFile} image ={podcast.displayImage}/>}
+      {playingFile && <AudioPlayer playingFile={playingFile} audioSrc={playingFile} image ={podcast.displayImage}/>}
     </div>
   );
 }

@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import Loader from '../components/Common/Loader';
 
 function Profile() {
+ 
+
     const user = useSelector(state => state.user.user);
     console.log("my user",user)
   function handleLogOut(){
@@ -18,6 +20,8 @@ function Profile() {
     })
 
   }
+
+
   if(!user){
     return <Loader/>
   }
@@ -25,6 +29,7 @@ function Profile() {
     <div>
         <Header/>
         {/* <Loader/> */}
+        <marquee style={{color:"yellow"}} direction="to left">Note : this page is under contruction ...</marquee>
         <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
             
             <h1>{user.name}</h1>

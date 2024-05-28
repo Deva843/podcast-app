@@ -17,12 +17,13 @@ padding: 1.5rem;
     color: var(--grey) !important;
     text-decoration: none;
     font-weight: 600;
+    text-transform: capitalize;
     
 }
 
 
 .links a:hover{
-color: var(--purple-grey) !important;
+color:white !important;
 transition: all 0.2s;
 }
 
@@ -40,12 +41,12 @@ transition: all 0.2s;
 
   /* //while active links */
  .links .active{
-    color: rgb(250, 206, 11) !important;
+    color:rgb(250, 206, 11) !important;
     /* background-color: goldenrod; */
     padding: .5rem;
   }
   .links .active:hover{
-    color: rgb(250, 206, 11) !important;
+    color: yellow !important;
   }
 
  

@@ -15,7 +15,7 @@ export default function SignUpPage() {
     <div>
       <Header />
       <div className="input-wrapper">
-        {!flag ? <h1>Signup</h1> :showLogin? <h1>Login</h1>:<h1>Update Your Password</h1>}
+        {!flag ? <h1>Signup</h1> :showLogin? <h1>Login</h1>:<h1>Update Your Password <marquee style ={{color:"yellow"}}behavior="" direction="to left"> <br/>Note : This page is under construction...</marquee></h1>}
         {!flag ? <SignupForm/> : showLogin ? <LoginForm setShowLogin={setShowLogin}/>:<ForgetPassword showLogin={showLogin}/>}
 
         {!flag ? (
