@@ -57,6 +57,7 @@ function SignupForm() {
           profilePic:fileURL?fileURL:"",
           
         });
+  
 
 
           //calling the redux action

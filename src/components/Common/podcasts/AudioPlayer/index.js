@@ -29,6 +29,8 @@ function AudioPlayer({audioSrc,image,playingFile}) {
       }
     
     },[playingFile]);
+  
+  
     useEffect(()=>{
       const audio = audioRef.current;
       audio.addEventListener("timeupdate",handleTimeUpdate);
@@ -52,7 +54,7 @@ function AudioPlayer({audioSrc,image,playingFile}) {
 
     useEffect(()=>{
       if(!isMute){
-        audioRef.current.volume = 1;
+        audioRef.current.volume = .5;
         // setVolume(1);
       }
       else{
@@ -70,19 +72,16 @@ function AudioPlayer({audioSrc,image,playingFile}) {
     }
     const handleEnded=()=>{
       setCurrentTime(0);
-      setIsPlaying(false)
+      setIsPlaying(false);
     }
 
     const handleDuration=(e)=>{
-      setCurrentTime(e.target.value);
-      audioRef.current.currentTime= e.target.value;
-    }
-    const handleDurationChange = (e) => {
       const newTime = e.target.value;
       setCurrentTime(newTime);
       audioRef.current.currentTime = newTime;
-    };
-    const format = (time) =>{
+     
+    }
+    const formatTime = (time) =>{
       const minutes = Math.floor(time/60) ;
       const seconds = Math.floor(time%60);
       return `${minutes}:${seconds < 10 ? "0":""}${seconds}`
@@ -108,6 +107,16 @@ function AudioPlayer({audioSrc,image,playingFile}) {
       setVolume(e.target.value);
       audioRef.current.volume= e.target.value;
     }
+    const handlePlayBackSpeed = (e) =>{
+      // e.preventDefault();
+      let time = e.target.value || 1;
+      // if(time){
+        audioRef.current.playbackRate = time;
+        
+      
+      // audioRef.current.playbackRate = 1;
+      
+    }
 
 
   return (
@@ -115,15 +124,24 @@ function AudioPlayer({audioSrc,image,playingFile}) {
         <img src={image} className='display-image-player'  alt="#" />
         <audio ref={audioRef} src={audioSrc}></audio>
         <div className='duration-flex'>
-        <p className="toogle-btn" onClick={togglePlay}> {isplaying  ? <FaPlay/> :<FaPause/>  }</p>
-        <p>{format(currentTime)}</p> 
+        <p className="toogle-btn" onClick={togglePlay}> {isplaying  ? <FaPlay/> :<FaPause/>   }</p>
+        <p>{formatTime(currentTime)}</p> 
         <input type="range" 
         value={currentTime}
         max={duration}
         step={0.01}
         onChange={handleDuration} 
         className='duration-range'/>
-        <p>-{format(duration-currentTime)}</p>
+        <p>-{formatTime(duration-currentTime)}</p>
+        <input type="text" pattern="[0-9]"style={{width:"30px",height:"100%",outline:"none",borderRadius:"5px"}}
+        placeholder='1x' 
+        onChange={handlePlayBackSpeed}/>
+        {/* <select onChange={handlePlayBackSpeed} style={{backgroundColor:"grey",border:"none",borderRadius:"5px"}} name="select" id="">speed
+        <option value=".5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+        </select> */}
         <p className="toogle-btn"
          onClick={toggleMute}>{!isMute ? <FaVolumeUp/>:<FaVolumeMute/>}</p>
         <input type="range" 

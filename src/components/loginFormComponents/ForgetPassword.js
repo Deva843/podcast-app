@@ -1,51 +1,47 @@
-import React, { useState } from 'react'
-import InputComponent from '../Common/input';
-import Button from '../Common/Button';
+import React, { useState } from "react";
+import InputComponent from "../Common/input";
+import Button from "../Common/Button";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { toast } from "react-toastify";
+import {auth} from "../../firebase"
 
 function ForgetPassword() {
-    const [loading,setLoading] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    
-    const handleUpdate = () =>{
-        console.log("update initiated")
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    console.log("update initiated");
+    setLoading(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success("email sent");
+
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
     }
+  };
+
   return (
     <>
-      
-       
-    <InputComponent
-    type="email"
-    placeholder="email"
-    state={email}
-    setState={setEmail}
-    required={true}
-  />
+      <InputComponent
+        type="email"
+        placeholder="email"
+        state={email}
+        setState={setEmail}
+        required={true}
+      />
 
-  <InputComponent
-    type="password"
-    placeholder="your new password"
-    state={password}
-    setState={setPassword}
-    required={true}
-  />
-  <InputComponent
-    type="password"
-    placeholder="confirm password"
-    state={confirmPassword}
-    setState={setConfirmPassword}
-    required={true}
-  />
-
-  <Button text={loading ? "loading...":"update your password"} disabled={loading} onClick={handleUpdate} />
-  
-  {/* <p style={{margin:"0", cursor:"pointer",border:"2px solid white"}} onClick={()=>setShowLogin(false)}>forget your password?</p> */}
+      <Button
+        text={loading ? "loading..." : "get Email"}
+        disabled={loading}
+        onClick={handleUpdate}
+      />
     </>
-   
-);
-  
+  );
 }
 
-export default ForgetPassword
+export default ForgetPassword;
